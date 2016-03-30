@@ -3,10 +3,13 @@
  */
 import org.apache.spark.api.java.JavaRDD
 import java.util.List
+
+import org.apache.spark.rdd.RDD
+
 //remove if not needed
 import scala.collection.JavaConversions._
 
-trait userSplit[T] {
+trait userSplit[T,K] {
 
-  def usrSplit(inputList: JavaRDD[T], splitTimes: Int): Array[JavaRDD[T]]
+  def usrSplit(inputList: RDD[(T,K)], splitTimes: Int): Array[RDD[(T,K)]]
 }

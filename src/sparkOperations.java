@@ -84,8 +84,13 @@ public class sparkOperations implements Serializable {
                 String outVal = new String("");
                 for (int i = 0; i < kthItemList.size() - 1; i++) {
                     for (int j = i + 1; j < kthItemList.size(); j++) {
-                        outVal = kthItemList.get(i) + "," + kthItemList.get(j);
-                        output.add(outVal);
+                        if (kthItemList.get(j).equals("entryNum68523287000")) {
+                            String faultVal = kthItemList.get(i) + "," + "entryNum0";
+                            output.add(faultVal);
+                        } else {
+                            outVal = kthItemList.get(i) + "," + kthItemList.get(j);
+                            output.add(outVal);
+                        }
                     }
                 }
                 return output;
