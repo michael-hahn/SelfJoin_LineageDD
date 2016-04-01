@@ -2,7 +2,6 @@
  * Created by Michael on 11/13/15.
  */
 
-import java.util.StringTokenizer
 import java.util.logging.{Level, Logger, FileHandler, LogManager}
 
 import org.apache.spark.api.java.JavaRDD
@@ -10,9 +9,15 @@ import org.apache.spark.delta.DeltaWorkflowManager
 import org.apache.spark.rdd.RDD
 import scala.sys.process._
 import scala.io.Source
+import org.apache.spark.SparkContext._
 
 import java.io.File
 import java.io._
+import scala.Tuple2
+import java.util.{Collections, Calendar, StringTokenizer}
+
+import scala.collection.JavaConversions._
+import scala.collection.mutable.MutableList
 
 
 
@@ -82,8 +87,43 @@ class Test extends userTest[(String, String)] with Serializable {
     }
     outputFile.delete
     */
-    inputRDD.collect().foreach(println)
-    val finalRdd = DeltaWorkflowManager.generateNewWorkFlow(inputRDD)
+
+    val finalRdd= inputRDD.groupByKey()
+         //.reduceByKey(_+ ";" + _)
+         .map(stringList1 => {
+      val kthItemList: MutableList[String] =  MutableList()
+      for (s <- stringList1._2) {
+        if (!kthItemList.contains(s)) {
+          kthItemList += s
+        }
+      }
+      Collections.sort(kthItemList)
+      (stringList1._1, kthItemList.toList)
+    })
+         .filter(pair => {
+      if (pair._2.size < 2) false
+      else true
+    })
+         .flatMap(stringList => {
+      val output: MutableList[(String, String)] = MutableList()
+      val kthItemList: List[String] = stringList._2.toList
+      for (i <- 0 until (kthItemList.size - 1)) {
+        for (j <- (i + 1) until kthItemList.size) {
+          val outVal = kthItemList.get(i) + "," + kthItemList.get(j)
+          output += Tuple2(stringList._1, outVal)
+        }
+      }
+      output.toList
+    })
+         //this map marks the records that crush the program
+         .map(pair => {
+      var value = pair._1
+      var ll = pair._1.split(",")
+      for (l <- ll) {
+        if (l.equals("entryNum32763205811")) value += "*"
+      }
+      (value, pair._2)
+    })
     val out = finalRdd.collect()
     for (o <- out) {
       println(o)

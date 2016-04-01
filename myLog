@@ -1,6 +1,10 @@
-Mar 30, 2016 11:23:43 AM SelfJoin$ main
-INFO: Record Lineage time starts at 2016-03-30 11:23:43.98
-Mar 30, 2016 11:23:51 AM SelfJoin$ main
-INFO: Lineage takes 7333651 microseconds
-Mar 30, 2016 11:23:51 AM SelfJoin$ main
-INFO: Lineage ends at 2016-03-30 11:23:51.314
+Apr 01, 2016 2:02:52 PM SelfJoin$ main
+INFO: Record Lineage time starts at 2016-04-01 14:02:52.573
+Apr 01, 2016 2:03:02 PM SelfJoin$ main
+INFO: Lineage takes 9589830 microseconds
+Apr 01, 2016 2:03:02 PM SelfJoin$ main
+INFO: Lineage ends at 2016-04-01 14:03:02.163
+Apr 01, 2016 2:03:06 PM SelfJoin$ main
+INFO: Record DeltaDebugging (unadjusted) time starts at 2016-04-01 14:03:06.832
+Apr 01, 2016 2:03:06 PM DD_NonEx dd_helper
+INFO: Running DD_NonEx SCALA
