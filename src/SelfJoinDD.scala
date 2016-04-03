@@ -2,11 +2,11 @@
  * Created by Michael on 11/22/15.
  */
 
-import java.io.File
 import java.util.logging._
 import java.util.{Calendar, Collections}
 
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.SparkContext._
 
 import scala.collection.mutable.MutableList
 
@@ -17,7 +17,7 @@ import org.apache.spark.lineage.LineageContext._
 
 import scala.collection.JavaConversions._
 
-object SelfJoin {
+object SelfJoinDD {
 	private val exhaustive = 0
 
 	def main(args: Array[String]): Unit = {
@@ -44,8 +44,8 @@ object SelfJoin {
 			val ctx = new SparkContext(sparkConf)
 
 			//set up lineage context
-			val lc = new LineageContext(ctx)
-			lc.setCaptureLineage(lineage)
+			//val lc = new LineageContext(ctx)
+			//lc.setCaptureLineage(lineage)
 
 			//start recording lineage time
 			val LineageStartTimestamp = new java.sql.Timestamp(Calendar.getInstance.getTime.getTime)
@@ -53,7 +53,7 @@ object SelfJoin {
 			logger.log(Level.INFO, "Record Lineage time starts at " + LineageStartTimestamp)
 
 			//spark program starts here
-			val lines = lc.textFile("SelfJoin_file1s.data", 10)
+			val lines = ctx.textFile("SelfJoin_file1s.data", 10)
 			//      logger.log(Level.INFO, "Total data count is " + lines.count)
 			val selfjoin_result = lines.filter(s => {
 				var index: Int = 0
@@ -82,9 +82,10 @@ object SelfJoin {
 				//.reduceByKey(_+ ";" + _)
 				.map(stringList1 => {
 				val kthItemList: MutableList[String] = MutableList()
-				for (s <- stringList1._2) {
+				val array = stringList1._2.toList.asInstanceOf[List[(String,Long)]]
+				for (s <- array) {
 					if (!kthItemList.contains(s)) {
-						kthItemList += s
+						kthItemList += s._1
 					}
 				}
 				Collections.sort(kthItemList)
@@ -115,88 +116,83 @@ object SelfJoin {
 				(value, pair._2)
 			})
 
-			val out = selfjoin_result.collectWithId()
+			val out = selfjoin_result.collect()
 			println(">>>>>>>>>>>>>  First Run Done  <<<<<<<<<<<<<<<")
 			//stop capturing lineage information
-			lc.setCaptureLineage(false)
-			Thread.sleep(1000)
-
-			//To print out the result for debugging purpose
-			//for (tuple <- out) {
-				//println(tuple._1._1 + ": " + tuple._1._2 + "-" + tuple._2)
-			//}
-
-			//find the index of the data that cause exception
-			var list = List[Long]()
-			for (o <- out) {
-				val checkPoint = o._1._1.substring(o._1._1.length - 1)
-				if (checkPoint.equals("*")) {
-					list = o._2 :: list
-				}
-			}
-
-			var linRdd = selfjoin_result.getLineage()
-			linRdd.collect
-
-			linRdd = linRdd.filter(l => {
-				//println("***" + l + "***") //debug
-				list.contains(l)
-			})
-
-
-			linRdd = linRdd.goBackAll()
-
-			println(">>>>>>>>>>>>>  Go Back All Done  <<<<<<<<<<<<<<<")
-			//At this stage, technically lineage has already find all the faulty data set, we record the time
-			val lineageEndTime = System.nanoTime()
-			val lineageEndTimestamp = new java.sql.Timestamp(Calendar.getInstance.getTime.getTime)
-			logger.log(Level.INFO, "Lineage takes " + (lineageEndTime - LineageStartTime) / 1000 + " microseconds")
-			logger.log(Level.INFO, "Lineage ends at " + lineageEndTimestamp)
-
-			linRdd = linRdd.goNext()
-
-			val showMeRdd = linRdd.show().toRDD
-
-			println(">>>>>>>>>>>>>  Go Next Done  <<<<<<<<<<<<<<<")
-
-			val mappedRDD = showMeRdd.map(s => {
-				val str = s.toString
-				val index = str.lastIndexOf(",")
-				val lineageID = str.substring(index + 1, str.length - 1)
-				val content = str.substring(2, index - 1)
-				val index2 = content.lastIndexOf(",")
-				println("caching")
-				((content.substring(0, index2), content.substring(index2 + 1)), lineageID.toLong)
-					})
-			mappedRDD.cache()
-			//Remove output before delta-debugging
-//			val outputFile = new File("/Users/Michael/IdeaProjects/SelfJoin_LineageDD/output")
-//			if (outputFile.isDirectory) {
-//				for (list <- Option(outputFile.listFiles()); child <- list) child.delete()
-//			}
-//			outputFile.delete
+//			lc.setCaptureLineage(false)
+//			Thread.sleep(1000)
 //
+//			//To print out the result for debugging purpose
+//			//for (tuple <- out) {
+//			//println(tuple._1._1 + ": " + tuple._1._2 + "-" + tuple._2)
+//			//}
+//
+//			//find the index of the data that cause exception
+//			var list = List[Long]()
+//			for (o <- out) {
+//				val checkPoint = o._1._1.substring(o._1._1.length - 1)
+//				if (checkPoint.equals("*")) {
+//					list = o._2 :: list
+//				}
+//			}
+//
+//			var linRdd = selfjoin_result.getLineage()
+//			linRdd.collect
+//
+//			linRdd = linRdd.filter(l => {
+//				//println("***" + l + "***") //debug
+//				list.contains(l)
+//			})
+//
+//
+//			linRdd = linRdd.goBackAll()
+//
+//			println(">>>>>>>>>>>>>  Go Back All Done  <<<<<<<<<<<<<<<")
+//			//At this stage, technically lineage has already find all the faulty data set, we record the time
+//			val lineageEndTime = System.nanoTime()
+//			val lineageEndTimestamp = new java.sql.Timestamp(Calendar.getInstance.getTime.getTime)
+//			logger.log(Level.INFO, "Lineage takes " + (lineageEndTime - LineageStartTime) / 1000 + " microseconds")
+//			logger.log(Level.INFO, "Lineage ends at " + lineageEndTimestamp)
+//
+//			//linRdd = linRdd.goNext()
+//
+//			val showMeRdd = linRdd.show().toRDD
+//			showMeRdd.collect().foreach(println)
+//			println(">>>>>>>>>>>>>  Go Next Done  <<<<<<<<<<<<<<<")
+//
+			val mappedRDD = lines.map(s => {
+				(s, 0L)
+			})
+			mappedRDD.cache()
+//			//Remove output before delta-debugging
+//			//			val outputFile = new File("/Users/Michael/IdeaProjects/SelfJoin_LineageDD/output")
+//			//			if (outputFile.isDirectory) {
+//			//				for (list <- Option(outputFile.listFiles()); child <- list) child.delete()
+//			//			}
+//			//			outputFile.delete
+//			//
 
 			val DeltaDebuggingStartTimestamp = new java.sql.Timestamp(Calendar.getInstance.getTime.getTime)
 			val DeltaDebuggingStartTime = System.nanoTime()
 			logger.log(Level.INFO, "Record DeltaDebugging (unadjusted) time starts at " + DeltaDebuggingStartTimestamp)
 
-			val delta_debug = new DD_NonEx[(String, String), Long]
-			val returnedRDD = delta_debug.ddgen(mappedRDD, new Test, new Split, lm, fh)
+			val delta_debug = new DD_NonEx[String, Long]
+
+			val returnedRDD = delta_debug.ddgen(mappedRDD, new TestV2, new SplitV2, lm, fh)
 
 			val ss = returnedRDD.collect
-				ss.foreach(println)
-//			linRdd = selfjoin_result.getLineage()
-//			linRdd.collect
-//			linRdd = linRdd.goBack().goBack().filter(l => {
-//				if (l.asInstanceOf[(Int, Int)]._2 == ss(0)._2.toInt) {
-//					println("*** => " + l)
-//					true
-//				} else false
-//			})
-//			linRdd = linRdd.goBackAll()
-//			linRdd.collect()
-//			linRdd.show()
+			ss.foreach(println)
+			//			linRdd = selfjoin_result.getLineage()
+			//			linRdd.collect
+			//			linRdd = linRdd.goBack().goBack().filter(l => {
+			//				if (l.asInstanceOf[(Int, Int)]._2 == ss(0)._2.toInt) {
+			//					println("*** => " + l)
+			//					true
+			//				} else false
+			//			})
+			//			linRdd = linRdd.goBackAll()
+			//			linRdd.collect()
+			//			linRdd.show()
 			val DeltaDebuggingEndTime = System.nanoTime()
 			val DeltaDebuggingEndTimestamp = new java.sql.Timestamp(Calendar.getInstance.getTime.getTime)
 			logger.log(Level.INFO, "DeltaDebugging (unadjusted) ends at " + DeltaDebuggingEndTimestamp)

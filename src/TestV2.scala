@@ -13,11 +13,11 @@ import scala.collection.JavaConversions._
 import scala.collection.mutable.MutableList
 
 
-class Test extends userTest[(String, String)] with Serializable {
+class TestV2 extends userTest[ String] with Serializable {
 
-	def usrTest(inputRDD: RDD[(String, String)], lm: LogManager, fh: FileHandler): Boolean = {
+	def usrTest(inputRDD: RDD[ String], lm: LogManager, fh: FileHandler): Boolean = {
 		//use the same logger as the object file
-		val logger: Logger = Logger.getLogger(classOf[Test].getName)
+		val logger: Logger = Logger.getLogger(classOf[TestV2].getName)
 		lm.addLogger(logger)
 		logger.addHandler(fh)
 
@@ -78,13 +78,36 @@ class Test extends userTest[(String, String)] with Serializable {
 		    outputFile.delete
 		    */
 
-		val finalRdd = inputRDD.groupByKey()
+		val finalRdd = inputRDD.filter(s => {
+			var index: Int = 0
+			index = s.lastIndexOf(",")
+			if (index == -1) {
+				false
+			}
+			else true
+		})
+			.map(s => {
+			var kMinusOne: String = new String
+			var kthItem: String = new String
+			var index: Int = 0
+			index = s.lastIndexOf(",")
+			if (index == -1) {
+				//This line should never be printed out thanks to the filter operation above
+				System.out.println("MapToPair: Input File in Wrong Format When Processing " + s)
+			}
+			kMinusOne = s.substring(0, index)
+			kthItem = s.substring(index + 1)
+			//println(kthItem.getClass.getSimpleName)
+			(kMinusOne, kthItem)
+			//elem
+		})
+			.groupByKey()
 			//.reduceByKey(_+ ";" + _)
 			.map(stringList1 => {
 			val kthItemList: MutableList[String] = MutableList()
 			val array = stringList1._2.toList.asInstanceOf[List[(String,Long)]]
 			for (s <- array) {
-				if (!kthItemList.contains(s._1)) {
+				if (!kthItemList.contains(s)) {
 					kthItemList += s._1
 				}
 			}
@@ -115,6 +138,7 @@ class Test extends userTest[(String, String)] with Serializable {
 			}
 			(value, pair._2)
 		})
+
 		println(">>>>>>>>>>>>>  Running Test <<<<<<<<<<<<<<<")
 
 		val out = finalRdd.collect()
