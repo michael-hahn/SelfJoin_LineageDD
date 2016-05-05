@@ -1,6 +1,220 @@
-Mar 30, 2016 11:23:43 AM SelfJoin$ main
-INFO: Record Lineage time starts at 2016-03-30 11:23:43.98
-Mar 30, 2016 11:23:51 AM SelfJoin$ main
-INFO: Lineage takes 7333651 microseconds
-Mar 30, 2016 11:23:51 AM SelfJoin$ main
-INFO: Lineage ends at 2016-03-30 11:23:51.314
+Apr 28, 2016 3:43:24 PM DD_NonEx_v2 dd_helper
+INFO: Running DD_NonEx SCALA
+Apr 28, 2016 3:43:24 PM DD_NonEx_v2 dd_helper
+INFO: 1Runs :1
+Apr 28, 2016 3:43:24 PM DD_NonEx_v2 dd_helper
+INFO: 1Size : 7
+Apr 28, 2016 3:43:25 PM Test usrTest
+INFO: TimeTest : 1355239
+Apr 28, 2016 3:43:25 PM Test usrTest
+INFO: TestRuns : 1
+Apr 28, 2016 3:43:26 PM Test usrTest
+INFO: TimeTest : 1082520
+Apr 28, 2016 3:43:26 PM Test usrTest
+INFO: TimeTest : 1082520
+Apr 28, 2016 3:43:26 PM Test usrTest
+INFO: TestRuns : 2
+Apr 28, 2016 3:43:26 PM Test usrTest
+INFO: TestRuns : 2
+Apr 28, 2016 3:43:26 PM DD_NonEx_v2 dd_helper
+INFO: 1Runs :3
+Apr 28, 2016 3:43:26 PM DD_NonEx_v2 dd_helper
+INFO: 1Size : 4
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TimeTest : 928979
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TimeTest : 928979
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TimeTest : 928979
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TestRuns : 3
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TestRuns : 3
+Apr 28, 2016 3:43:27 PM Test usrTest
+INFO: TestRuns : 3
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TimeTest : 813066
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TimeTest : 813066
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TimeTest : 813066
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TimeTest : 813066
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TestRuns : 4
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TestRuns : 4
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TestRuns : 4
+Apr 28, 2016 3:43:28 PM Test usrTest
+INFO: TestRuns : 4
+Apr 28, 2016 3:43:28 PM DD_NonEx_v2 dd_helper
+INFO: 1Runs :5
+Apr 28, 2016 3:43:28 PM DD_NonEx_v2 dd_helper
+INFO: 1Size : 2
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TimeTest : 1334569
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TimeTest : 1334569
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TimeTest : 1334569
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TimeTest : 1334569
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TimeTest : 1334569
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TestRuns : 5
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TestRuns : 5
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TestRuns : 5
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TestRuns : 5
+Apr 28, 2016 3:43:29 PM Test usrTest
+INFO: TestRuns : 5
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TimeTest : 911534
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:30 PM Test usrTest
+INFO: TestRuns : 6
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TimeTest : 856368
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:31 PM Test usrTest
+INFO: TestRuns : 7
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TimeTest : 1857132
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:33 PM Test usrTest
+INFO: TestRuns : 8
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TimeTest : 1631057
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM Test usrTest
+INFO: TestRuns : 9
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Run : 10
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: First RDD Run : 6
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Not First RDD Run : 1
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Mix and Match Run : 2
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Granularity increase : 0
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: End of This Branch of Search
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Size : 2
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+WARNING: Delta Debugged Error inducing inputs: 
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2$$anonfun$dd_helper$4 apply
+WARNING: (entryNum03018100462,entryNum07682255338,entryNum10352816512,entryNum17674556072,entryNum34056486724,entryNum35806273610,entryNum61670317428,entryNum63117003655,entryNum63251524807,entryNum66325250368)
+
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2$$anonfun$dd_helper$4 apply
+WARNING: (entryNum03018100462,entryNum07682255338,entryNum10352816512,entryNum17674556072,entryNum34056486724,entryNum35806273610,entryNum61670317428,entryNum63117003655,entryNum63251524807,entryNumA)
+
+Apr 28, 2016 3:43:35 PM DD_NonEx_v2 dd_helper
+INFO: Time : 6694153
+Apr 28, 2016 3:43:35 PM SelfJoin$ main
+INFO: Record total time: Delta-Debugging + Linegae + goNext:20410832 microseconds
