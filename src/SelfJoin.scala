@@ -1,30 +1,21 @@
 /**
  * Created by Michael on 11/22/15.
  */
-import java.io._
-import java.io.{PrintWriter, File}
-import java.lang.Exception
+
+import java.io.File
 import java.util.logging._
-import org.apache.spark.{rdd, SparkConf, SparkContext}
-import org.apache.spark.api.java.JavaPairRDD
-import org.apache.spark.api.java.JavaRDD
-import org.apache.spark.api.java.JavaSparkContext
-import org.apache.spark.api.java.function.{FlatMapFunction, Function2, PairFunction}
-import org.apache.spark.rdd.{PairRDDFunctions, RDD}
-import scala.Tuple2
-import java.util.{Collections, Calendar, StringTokenizer}
+import java.util.{Calendar, Collections}
+
+import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.collection.mutable.MutableList
 
 //remove if not needed
-import scala.collection.JavaConversions._
 
-import scala.util.control.Breaks._
 import org.apache.spark.lineage.LineageContext
 import org.apache.spark.lineage.LineageContext._
 
-import org.apache.spark.SparkContext._
-import scala.sys.process._
+import scala.collection.JavaConversions._
 
 object SelfJoin {
   private val exhaustive = 0

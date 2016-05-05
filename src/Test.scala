@@ -24,10 +24,17 @@ import org.apache.spark.SparkContext._
 import org.apache.spark.rdd.RDD
 import scala.collection.mutable.MutableList
 import scala.util.control.Breaks._
+
+
 import java.io._
+import java.util.Collections
+import java.util.logging.{FileHandler, LogManager, Logger}
 
+import org.apache.spark.SparkContext._
+import org.apache.spark.rdd.RDD
 
-
+import scala.collection.JavaConversions._
+import scala.collection.mutable.MutableList
 
 class Test extends userTest[(String, String)] with Serializable {
   var num = 0
@@ -143,6 +150,5 @@ class Test extends userTest[(String, String)] with Serializable {
     returnValue
 
   }
-
 }
 
