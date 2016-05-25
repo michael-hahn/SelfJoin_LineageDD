@@ -4,7 +4,7 @@ outputfile = open("/Users/Michael/IdeaProjects/SelfJoin/file1s_faults.data", "w"
 line = inputfile.readline()
 while line:
 	fault1 = randint(1, 1000000)
-	if fault1 <= 400:
+	if fault1 <= 1000:
 		entryList = line.split(",")
 		length = len(entryList)
 		indexToFault = randint(0, length - 1)

@@ -35,7 +35,7 @@ object SelfJoin {
       val sparkConf = new SparkConf().setMaster("local[8]")
       sparkConf.setAppName("SelfJoin_LineageDD")
         .set("spark.executor.memory", "2g")
-
+//Uncomment for lineage
       //set up lineage
       var lineage = true
       var logFile = "hdfs://scai01.cs.ucla.edu:9000/clash/data/"
@@ -52,6 +52,7 @@ object SelfJoin {
       //set up spark context
       val ctx = new SparkContext(sparkConf)
 
+      // Uncomment for lineage
       //set up lineage context
       val lc = new LineageContext(ctx)
       lc.setCaptureLineage(lineage)
@@ -71,6 +72,8 @@ object SelfJoin {
 //      val LineageStartTime = System.nanoTime()
 //      logger.log(Level.INFO, "Record Lineage time starts at " + LineageStartTimestamp)
 
+
+      //Uncomment for lineage
       //spark program starts here
       val lines = lc.textFile("../SelfJoin/file1s_faults.data", 10)
 //      logger.log(Level.INFO, "Total data count is " + lines.count)
@@ -213,6 +216,7 @@ object SelfJoin {
         (kMinusOne, kthItem)
       })
 
+
 //      println("MappedRDD has " + mappedRDD.count() + " records")
 
 
@@ -239,6 +243,32 @@ object SelfJoin {
         */
 //      lineageResult.cache()
 
+/* For DD Only
+//      val lines = ctx.textFile("../SelfJoin/file1s_faults.data", 10)
+//      val mappedRDD = lines
+//        .filter(s => {
+//          var index = 0
+//          index = s.lastIndexOf(",")
+//          if (index == -1) {
+//            false
+//          }
+//          else true
+//        })
+//        .map(s => {
+//        var kMinusOne = new String
+//        var kthItem  = new String
+//        var index = 0
+//        index = s.lastIndexOf(",")
+//        if (index == -1) {
+//          //This line should never be printed out thanks to the filter operation above
+//          System.out.println("MapToPair: Input File in Wrong Format When Processing " + s)
+//        }
+//        kMinusOne = s.substring(0, index)
+//        kthItem = s.substring(index + 1)
+//        //println(kthItem.getClass.getSimpleName)
+//        (kMinusOne, kthItem)
+//      })
+*/
 
 //      if (exhaustive == 1) {
 //        val delta_debug: DD[String] = new DD[String]

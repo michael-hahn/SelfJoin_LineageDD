@@ -37,6 +37,7 @@ class DD [T: ClassTag] {
   }
 
   def split(inputRDD: Array[T], numberOfPartitions: Int, splitFunc: userSplit_v2[T]): List[Array[T]] = {
+    println(numberOfPartitions)
     splitFunc.usrSplit(inputRDD, numberOfPartitions)
   }
 
@@ -82,9 +83,6 @@ class DD [T: ClassTag] {
         if( sizeRdd  < dd_movetolocal_threshold && runningOnCluster){
           runningOnCluster = false
           val localRdd = localRDD(rdd.collect() , numberOfPartitions , testFunc , splitFunc , lm , fh)
-          //          localRdd.collect().foreach(s=> {
-          //            logger.log(Level.WARNING, s.toString + "\n")
-          //          })
           runningOnCluster = true
           break
         }
@@ -156,7 +154,9 @@ class DD [T: ClassTag] {
               rddBar_failed = true
               //              next_rdd = next_rdd.intersection(rddBar)
               next_rdd = rddBar
-              next_partitions = next_partitions - 1
+              if (next_partitions > 2) {
+                next_partitions = next_partitions - 1
+              }
               bar_offset = i
               failing_stack.add(0, new SubRDD(next_rdd, next_partitions, bar_offset))
             }
@@ -280,7 +280,9 @@ class DD [T: ClassTag] {
               rddBar_failed = true
               //              next_rdd = next_rdd.intersection(rddBar)
               next_rdd = rddBar
-              next_partitions = next_partitions - 1
+              if (next_partitions > 2) {
+                next_partitions = next_partitions - 1
+              }
               bar_offset = i
               failing_stack.add(0, new SubArray(next_rdd, next_partitions, bar_offset))
             }
